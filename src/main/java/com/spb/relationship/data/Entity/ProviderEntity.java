@@ -3,6 +3,8 @@ package com.spb.relationship.data.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -16,4 +18,8 @@ public class ProviderEntity extends BaseEntity{
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "provider", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private List<ProductEntity> productList = new ArrayList<>();
 }
