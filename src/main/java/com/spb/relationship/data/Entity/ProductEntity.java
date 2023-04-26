@@ -3,6 +3,8 @@ package com.spb.relationship.data.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,5 +37,14 @@ public class ProductEntity extends BaseEntity {
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private ProviderEntity provider;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<ProducerEntity> producers = new ArrayList<>();
+
+    public void addProducer(ProducerEntity producer) {
+        this.producers.add(producer);
+    }
+
 }
 
